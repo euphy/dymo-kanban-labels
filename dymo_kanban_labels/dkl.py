@@ -10,7 +10,7 @@ def hello():
     return "You have contacted the DKL."
 
 
-@app.route("/api/print/issue/<issue_id>")
+@app.route("/api/print/issue/<issue_key>")
 def print_issue(issue_key):
     # Look up issue from JIRA
     issue = jira_api.get_issue(issue_key=issue_key)
@@ -21,7 +21,7 @@ def print_issue(issue_key):
     # Enumerate and contact label printer
     # Print label
 
-    return "Print issue %s" % issue_key
+    return "Print issue %s: %s" % (issue_key, issue.__str__())
 
 
 if __name__ == "__main__":
