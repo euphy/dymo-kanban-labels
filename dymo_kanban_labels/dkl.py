@@ -19,12 +19,14 @@ def print_issue(issue_key):
     # Load jira_issue.label from Dymo Label Software (DLS)
     # Condense JIRA info
     # Put JIRA into into label
+    jl = JiraLabel(issue)
+
     # Enumerate and contact label printer
     # Print label
-    jl = JiraLabel(issue)
     print jl
 
     jl.save_label("%s.label" % issue_key)
+    # jl.print_label()
 
     return "Print issue %s: %s" % (issue_key, issue.__str__())
 
