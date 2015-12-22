@@ -15,3 +15,10 @@ This will involve:
 * Printing the labels
 * Partying
 
+Install pywin32 with
+
+    easy_install pywin32-219.win32-py2.7.exe
+
+Or use a different "bitted-ness" or python version chosen from
+http://sourceforge.net/projects/pywin32/files/pywin32/
+

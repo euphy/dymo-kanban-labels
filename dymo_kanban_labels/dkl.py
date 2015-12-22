@@ -1,6 +1,7 @@
 from flask import Flask
 
 from dymo_kanban_labels.lib import jira_api
+from dymo_kanban_labels.lib.dymo import JiraLabel
 
 app = Flask(__name__)
 
@@ -20,6 +21,10 @@ def print_issue(issue_key):
     # Put JIRA into into label
     # Enumerate and contact label printer
     # Print label
+    jl = JiraLabel(issue)
+    print jl
+
+    jl.save_label("%s.label" % issue_key)
 
     return "Print issue %s: %s" % (issue_key, issue.__str__())
 
