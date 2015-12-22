@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ label_fields.__getitem__('issue_key') }}</h1>
+<ul>
+{% for field in label_fields %}
+    <li><strong>{{ field }}:</strong> <pre>{{ label_fields.__getitem__(field) }}</pre></li>
+{% endfor %}
+</ul>
+</body>
+</html>

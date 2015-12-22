@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from dymo_kanban_labels.lib import jira_api
 from dymo_kanban_labels.lib.dymo import JiraLabel
@@ -7,26 +7,32 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
+def home():
     return "You have contacted the DKL."
 
 
-@app.route("/api/print/issue/<issue_key>")
-def print_issue(issue_key):
-    # Look up issue from JIRA
+@app.route("/api/preview/issue/<issue_key>", methods=['GET'])
+def preview_issue(issue_key):
     issue = jira_api.get_issue(issue_key=issue_key)
-
-    # Load jira_issue.label from Dymo Label Software (DLS)
-    # Condense JIRA info
-    # Put JIRA into into label
     jl = JiraLabel(issue)
+    print "Print issue %s" % jl.label_fields
+    return render_template('label_fields.html', label_fields=jl.label_fields)
 
-    # Enumerate and contact label printer
-    # Print label
-    print jl
 
+@app.route("/api/print/issue/<issue_key>", methods=['POST'])
+def print_issue(issue_key):
+    issue = jira_api.get_issue(issue_key=issue_key)
+    jl = JiraLabel(issue)
     jl.save_label("%s.label" % issue_key)
-    # jl.print_label()
+    jl.print_label()
+
+    return "Print issue %s: %s" % (issue_key, issue.__str__())
+
+@app.route("/api/save/issue/<issue_key>", methods=['GET'])
+def return_label(issue_key):
+    issue = jira_api.get_issue(issue_key=issue_key)
+    jl = JiraLabel(issue)
+    jl.save_label("%s.label" % issue_key)
 
     return "Print issue %s: %s" % (issue_key, issue.__str__())
 

@@ -2,9 +2,11 @@
 
 Use a Dymo Labelwriter 450 to print your sprint.
 
-A scrummaster might spend a long time writing out neat cards for the Scrum board. This will be a way of harvesting a sprint's-worth of issues from JIRA and printing them all off onto labels.
+A scrummaster might spend a long time writing out neat cards for the Scrum board. This project shows a  way of collecting a sprint's-worth of issues from JIRA and printing them all off onto labels.
 
 You can stick the labels where you like. I like dry-wipeable magnetic plastic sheet.
+
+Dymo labels are well-behaved, peel off easily and don't leave residual glue.
 
 
 ## Bad news
@@ -12,6 +14,9 @@ You can stick the labels where you like. I like dry-wipeable magnetic plastic sh
 Dymo provide an SDK that requires the Dymo Label Software (DLS) to be installed.  This currently is available for
 Windows and MacOS only. On both cases it requires OS-specific work to access (COM in Windows), so this project is
 for Windows only.
+
+There are CUPS drivers for Linux, so I guess the label could be built as postscript and fired off that way.
+Little more work, and besides I'm developing on Windows right now. It's the holidays, give me a break.
 
 
 ## Installation
@@ -32,4 +37,12 @@ http://sourceforge.net/projects/pywin32/files/pywin32/
 
 DKL uses basic authentication. Put your details into ``lib/user.py``. Harvesting these from the user at runtime
 may be a better way of doing this, if batch size can be increased.
+
+
+## Usage
+
+Run dkl.py, it'll start a web server.
+
+
+    GET localhost:5000/api/print/issue/<JIRA key>
 
