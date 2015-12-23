@@ -8,6 +8,9 @@ You can stick the labels where you like. I like dry-wipeable magnetic plastic sh
 
 Dymo labels are well-behaved, peel off easily and don't leave residual glue.
 
+First versions look like this:
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/euphy/23825207382/in/dateposted-public/" title="JIRA to Dymo label printing: Epic and Story"><img src="https://farm6.staticflickr.com/5823/23825207382_fdc20ab4b9.jpg" width="500" height="375" alt="JIRA to Dymo label printing: Epic and Story"></a>
 
 ## Bad news
 
@@ -46,3 +49,4 @@ Run dkl.py, it'll start a web server.
 
     GET localhost:5000/api/print/issue/<JIRA key>
 
+And check out dkl.py for a couple of other routes. I've just realised I've not committed some nice changes, so that'll happen after Christmas.
